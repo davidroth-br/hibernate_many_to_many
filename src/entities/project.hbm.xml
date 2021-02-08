@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.Project" table="PROJECT">
+
+        <id name="projectId" column="PROJECT_ID"/>
+        <property name="name" column="NAME"/>
+        <property name="budget" column="BUDGET"/>
+        <property name="creationDate" column="CREATION_DATE"/>
+
+        <set name="employees" table="EMPLOYEE_PROJECT"
+             inverse="true" lazy="true" fetch="select">
+            <key column="EMPLOYEE_ID" />
+            <many-to-many column="PROJECT_ID" class="entities.Project" />
+        </set>
+
+    </class>
+</hibernate-mapping>

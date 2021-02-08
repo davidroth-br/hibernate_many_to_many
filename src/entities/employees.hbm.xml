@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.Employees" table="EMPLOYEES">
+        <id name="employeeId" column="EMPLOYEE_ID"/>
+        <property name="firstName" column="FIRST_NAME"/>
+        <property name="lastName" column="LAST_NAME"/>
+        <property name="email" column="EMAIL"/>
+        <property name="phoneNumber" column="PHONE_NUMBER"/>
+        <property name="hireDate" column="HIRE_DATE"/>
+        <property name="jobId" column="JOB_ID"/>
+        <property name="salary" column="SALARY"/>
+        <property name="commissionPct" column="COMMISSION_PCT"/>
+        <property name="managerId" column="MANAGER_ID"/>
+        <property name="departmentId" column="DEPARTMENT_ID"/>
+
+        <set name="projects" table="EMPLOYEE_PROJECT"
+             inverse="false" lazy="true" fetch="select" cascade="save-update">
+            <key column="EMPLOYEE_ID" />
+            <many-to-many column="PROJECT_ID" class="entities.Project" />
+        </set>
+    </class>
+</hibernate-mapping>
